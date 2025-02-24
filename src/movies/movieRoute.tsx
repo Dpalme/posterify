@@ -15,7 +15,7 @@ export const MovieRoute = createRoute({
   loader: ({ context, params }) => {
     const queryClient = context.queryClient,
       movieId = params.movieId;
-    queryClient.prefetchQuery({
+    queryClient.ensureQueryData({
       queryKey: ['movies', movieId],
       queryFn: () => getMovie(movieId),
     });
