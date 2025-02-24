@@ -1,6 +1,6 @@
 import { createRoute, lazyRouteComponent } from '@tanstack/react-router';
-import rootRoute from '@/App';
-import { getCollection } from '@/shared/providers/database';
+import rootRoute from '#/App';
+import { getCollection } from '#/shared/providers/database';
 
 export const CollectionRoute = createRoute({
   path: '/collection',

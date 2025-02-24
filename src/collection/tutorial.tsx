@@ -1,10 +1,10 @@
-import { ImageCard } from '@/shared/components/tmdbimages/imageCard';
+import { ImageCard } from '#/shared/components/tmdbimages/imageCard';
 import { Link } from '@tanstack/react-router';
 
 export const Tutorial = () => {
   return (
     <>
-      <h1 className="text-2xl mb-4">You haven't collected anything!</h1>
+      <h1 className="mb-4 text-2xl">You haven't collected anything!</h1>
       <p>
         Try going to the{' '}
         <Link

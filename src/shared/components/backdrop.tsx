@@ -1,9 +1,6 @@
 export const LoadingBackdrop = () => {
   return (
-    <div
-      className="fixed z-10 w-full h-full text-main flex
-      flex-col items-center justify-center gap-16"
-    >
+    <div className="text-main fixed z-10 flex h-full w-full flex-col items-center justify-center gap-16">
       <svg
         width="320"
         height="320"
@@ -76,7 +73,7 @@ export const LoadingBackdrop = () => {
           />
         </rect>
       </svg>
-      <p className="text-3xl pb-2 font-title inline-block">POSTERIFY</p>
+      <p className="font-title inline-block pb-2 text-3xl">POSTERIFY</p>
     </div>
   );
 };

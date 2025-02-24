@@ -1,12 +1,11 @@
-import { Container } from '@shared/components/container';
-import { HandleAsync } from '@shared/components/handleAsync';
-import { TMDBImage } from '@shared/components/tmdbimages/tmdbImg';
+import { HandleAsync } from '#shared/components/handleAsync';
 import { feedQuery, useFeed } from './hooks';
-import { InfiniteScrollTrigger } from '@/shared/components/infinteScrollerTrigger';
-import { FallbackPosters } from '@/shared/components/fallbackPosters';
-import { MovieCard } from './components/movieCard';
+import { FallbackPosters } from '#/shared/components/fallbackPosters';
 import { createRoute } from '@tanstack/react-router';
-import rootRoute from '@/App';
+import rootRoute from '#/App';
+import MovieGrid from '#/shared/components/movieGrid';
+import { LoadingSpinner } from '#/shared/components/loadingSpinner';
+import { useCallback } from 'react';
 
 export const HomeRoute = createRoute({
   path: '/',
@@ -14,34 +13,30 @@ export const HomeRoute = createRoute({
   loader: ({ context: { queryClient } }) =>
     queryClient.prefetchInfiniteQuery(feedQuery),
   component: Homepage,
+  pendingComponent: LoadingSpinner,
 });
 
+function setInitialIndex(n: number) {
+  window.localStorage.setItem('lastMovieHome', String(n));
+}
 function Homepage() {
-  const { movies, error, loading, fetchNextPage, hasNextPage } = useFeed();
+  const { movies, error, loading, fetchNextPage } = useFeed();
+  const initialIndex = Number(
+    window.localStorage.getItem('lastMovieHome') || 0,
+  );
   return (
-    <Container gridClass="!grid-cols-1">
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(12rem,1fr))] gap-2">
-        <HandleAsync
-          loading={loading}
-          error={error}
-          fallback={<FallbackPosters numberOfPosters={32} />}
-        >
-          {movies !== undefined &&
-            movies.map((movie) => (
-              <MovieCard
-                movie={movie}
-                key={movie.id}
-              />
-            ))}
-          {hasNextPage && (
-            <InfiniteScrollTrigger
-              fetchNextPage={fetchNextPage}
-              padding={32}
-            />
-          )}
-        </HandleAsync>
-      </div>
-    </Container>
+    <HandleAsync
+      loading={loading}
+      error={error}
+      fallback={<FallbackPosters numberOfPosters={32} />}
+    >
+      <MovieGrid
+        movies={movies}
+        fetchNextPage={fetchNextPage}
+        initialIndex={initialIndex}
+        setInitialIndex={setInitialIndex}
+      />
+    </HandleAsync>
   );
 }
 

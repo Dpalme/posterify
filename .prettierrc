@@ -9,5 +9,6 @@
   "semi": true,
   "singleAttributePerLine": true,
   "trailingComma": "all",
-  "htmlWhitespaceSensitivity": "css"
+  "htmlWhitespaceSensitivity": "css",
+  "plugins": ["prettier-plugin-tailwindcss"]
 }

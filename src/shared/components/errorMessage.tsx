@@ -5,10 +5,10 @@ export const ErrorMessage = (props: {
   return (
     <div
       className={[
-        'p-4 border border-solid rounded-md bg-red-500',
-        'w-full shadow-lg fixed top-1/2 left-1/2',
-        'border-error-60 bg-error-50 text-white -translate-x-1/2',
-        '-translate-y-1/2 z-10 transform max-w-xl',
+        'rounded-md border border-solid bg-red-500 p-4',
+        'fixed top-1/2 left-1/2 w-full shadow-lg',
+        'border-error-60 bg-error-50 -translate-x-1/2 text-white',
+        'z-10 max-w-xl -translate-y-1/2 transform',
         props.className,
       ].join(' ')}
     >

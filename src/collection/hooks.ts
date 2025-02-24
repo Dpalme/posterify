@@ -1,17 +1,18 @@
-import { TMDBImage } from '@shared/models/image';
+import { TMDBImage } from '#shared/models/image';
 import {
   addToCollection,
   getCollection,
   removeFromCollection,
-} from '@shared/providers/database';
+} from '#shared/providers/database';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMemo, useState } from 'react';
 
 export const useAddToCollection = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (values: {
       file_path: string;
-      movie_id: number;
+      movie_id: string;
       aspect_ratio: number;
       width: number;
       height: number;
@@ -25,8 +26,12 @@ export const useAddToCollection = () => {
         width: values.width,
         type: values.type,
       }),
-    onSettled: () =>
-      queryClient.invalidateQueries({ queryKey: ['collection'] }),
+    onSuccess: () =>
+      queryClient.invalidateQueries({
+        queryKey: ['collection'],
+        type: 'all',
+        refetchType: 'active',
+      }),
   });
 };
 
@@ -35,22 +40,32 @@ export const useRemoveFromCollection = () => {
   return useMutation({
     mutationFn: (values: {
       file_path: string;
-      movie_id: number;
+      movie_id: string;
       aspect_ratio: number;
       width: number;
       height: number;
       type: 'backdrop' | 'logo' | 'poster' | 'profile' | 'still';
     }) => removeFromCollection(values.file_path),
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['collection'] });
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['collection'],
+        type: 'all',
+        refetchType: 'active',
+      });
     },
   });
 };
 
-export const useGetCollection = () => {
+export const useGetCollection = ({
+  query = undefined,
+  limit = undefined,
+}: {
+  query?: string;
+  limit?: number;
+} = {}) => {
   const { data, isLoading, error } = useQuery({
-    queryKey: ['collection'],
-    queryFn: () => getCollection(),
+    queryKey: ['collection', { query, limit }],
+    queryFn: () => getCollection(query, limit),
   });
 
   return {
@@ -60,6 +75,10 @@ export const useGetCollection = () => {
   };
 };
 
-export const useImageIsInCollection = (image: TMDBImage) => {
-  return getCollection(image.file_path, 1).then((d) => d.length > 0);
-};
+export function useImageIsInCollection(image: TMDBImage | string) {
+  const imageId = typeof image === 'string' ? image : image.file_path;
+  return useQuery({
+    queryKey: ['collection', imageId],
+    queryFn: () => getCollection(imageId, 1).then((res) => res?.[0] || false),
+  });
+}

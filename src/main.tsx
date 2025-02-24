@@ -12,10 +12,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import MovieRoute from './movies/movieRoute';
 import SearchRoute from './search/SearchRoute';
 import { CollectionRoute } from './collection/CollectionRoute';
-import SearchResultsRoute from './search/resultsPage';
 
 const routeTree = rootRoute.addChildren([
-  SearchRoute.addChildren([SearchResultsRoute]),
+  SearchRoute,
   MovieRoute,
   HomeRoute,
   CollectionRoute,

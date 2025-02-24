@@ -14,7 +14,7 @@ export const Container = (props: {
     <section
       className={[
         props.sectionClass,
-        !props.relative && 'fixed top-0 w-screen h-screen overflow-hidden',
+        !props.relative && 'fixed top-0 h-screen w-screen overflow-hidden',
       ].join(' ')}
     >
       {!!props.backgroundImage && (
@@ -22,17 +22,17 @@ export const Container = (props: {
       )}
       <div
         className={[
-          'p-8 md:pb-4 md:mb-0',
-          'md:mt-16 overflow-y-auto w-full',
+          'p-8 md:mb-0 md:pb-4',
+          'w-full overflow-y-auto md:mt-16',
           'max-w-full overflow-x-hidden overscroll-contain',
           '@container',
-          !props.relative && 'h-[calc(100vh-4rem)] ',
+          !props.relative && 'h-[calc(100vh-4rem)]',
           props.containerClass,
         ].join(' ')}
       >
         <div
           className={[
-            'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_3fr] gap-16',
+            'grid grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-[1fr_3fr]',
             'drop-shadow-sm',
             props.gridClass?.includes('items-')
               ? props.gridClass

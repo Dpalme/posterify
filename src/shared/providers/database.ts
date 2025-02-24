@@ -9,8 +9,8 @@ var indexedDB =
   window.OIndexedDB ||
   // @ts-ignore
   window.msIndexedDB;
-  //@ts-ignore
-  var IDBTransaction =
+//@ts-ignore
+var IDBTransaction =
   window.IDBTransaction ||
   // @ts-ignore
   window.webkitIDBTransaction ||
@@ -22,7 +22,7 @@ var dbVersion = 2;
 
 interface DBEntry {
   file_path: string;
-  movie_id: number;
+  movie_id: string;
   added_on: string;
   type: 'backdrop' | 'logo' | 'poster' | 'profile' | 'still';
   aspect_ratio: number;
@@ -74,7 +74,7 @@ DBOpenRequest.onupgradeneeded = function () {
 
 export async function addToCollection(item: {
   file_path: string;
-  movie_id: number;
+  movie_id: string;
   type: 'backdrop' | 'logo' | 'poster' | 'profile' | 'still';
   aspect_ratio: number;
   width: number;

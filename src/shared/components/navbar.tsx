@@ -1,6 +1,6 @@
-import CollectionIcon from '@assets/heart_filled.svg';
-import Logo from '@assets/Posterify.svg';
-import SearchIcon from '@assets/search.svg';
+import Logo from '#assets/Posterify.svg';
+import CollectionIcon from '../icons/collectionIcon';
+import SearchIcon from '../icons/searchIcon';
 import { SearchField } from './searchField';
 import { Link } from '@tanstack/react-router';
 import { ReactNode } from 'react';
@@ -9,8 +9,7 @@ const NavLink = (props: { to: string; children: ReactNode; search?: any }) => {
   return (
     <Link
       to={props.to}
-      className="font-title text-lg navlink flex
-  flex-row gap-2 items-center"
+      className="font-title navlink flex flex-row items-center gap-2 text-sm hover:text-emerald-500"
       activeProps={() => ({
         className: 'text-emerald-600',
       })}
@@ -23,14 +22,7 @@ const NavLink = (props: { to: string; children: ReactNode; search?: any }) => {
 
 export const Navbar = () => {
   return (
-    <nav
-      className="flex gap-2 fixed px-4 py-4
-      bottom-0 right-0 flex-row backdrop-blur-lg
-      backdrop-filter w-full z-20 bg-white
-      text-black justify-evenly items-center
-      md:(justify-start gap-8 top-0 left-0 bottom-auto px-12)
-      dark:(bg-dark-700 text-white)"
-    >
+    <nav className="dark:bg-dark-700 !bg-opacity-75 fixed top-0 right-0 bottom-0 bottom-auto left-0 z-20 flex w-full flex-row items-center justify-evenly gap-2 gap-8 border-b border-slate-400 bg-white px-4 py-4 text-black backdrop-blur-md backdrop-filter md:justify-start md:px-12 dark:border-slate-700 dark:text-white">
       <NavLink to="/">
         <img
           src={Logo}
@@ -41,20 +33,10 @@ export const Navbar = () => {
         <span className="hidden md:inline-block">POSTERIFY</span>
       </NavLink>
       <NavLink to="/collection">
-        <img
-          src={CollectionIcon}
-          className="pointer-events-none"
-          height={24}
-        />
+        <CollectionIcon />
+        <span className="hidden md:block">Collection</span>
       </NavLink>
-      <NavLink to="/search">
-        <img
-          src={SearchIcon}
-          className="pointer-events-none"
-          height={24}
-        />
-      </NavLink>
-      <div className="hidden md:(ml-auto block)">
+      <div className="md:(ml-auto block) hidden">
         <SearchField />
       </div>
     </nav>

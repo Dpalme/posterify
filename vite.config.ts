@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
-import WindiCSS from 'vite-plugin-windicss';
+import tailwindcss from '@tailwindcss/vite';
+
 import { fileURLToPath } from 'url';
 import path from 'path';
 
@@ -8,22 +9,22 @@ import path from 'path';
 export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
   return {
-    plugins: [react(), WindiCSS()],
+    plugins: [react(), tailwindcss()],
     // server: {
     //   open: true,
     // },
     esbuild: false,
     resolve: {
       alias: {
-        '@': path.resolve(
+        '#': path.resolve(
           path.dirname(fileURLToPath(import.meta.url)),
           './src',
         ),
-        '@shared': path.resolve(
+        '#shared': path.resolve(
           path.dirname(fileURLToPath(import.meta.url)),
           './src/shared',
         ),
-        '@assets': path.resolve(
+        '#assets': path.resolve(
           path.dirname(fileURLToPath(import.meta.url)),
           './src/assets',
         ),

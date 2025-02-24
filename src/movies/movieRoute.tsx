@@ -1,7 +1,8 @@
-import rootRoute from '@/App';
+import rootRoute from '#/App';
 import { createRoute, lazyRouteComponent } from '@tanstack/react-router';
 import { getMovie } from './services';
-import { ErrorMessage } from '@/shared/components/errorMessage';
+import { ErrorMessage } from '#/shared/components/errorMessage';
+import { LoadingBackdrop } from '#/shared/components/backdrop';
 
 export const MovieRoute = createRoute({
   path: '/movies/$movieId',
@@ -11,9 +12,9 @@ export const MovieRoute = createRoute({
       movieId: params.movieId + '',
     };
   },
-  loader: (args) => {
-    const queryClient = args.context.queryClient,
-      movieId = args.params.movieId;
+  loader: ({ context, params }) => {
+    const queryClient = context.queryClient,
+      movieId = params.movieId;
     queryClient.prefetchQuery({
       queryKey: ['movies', movieId],
       queryFn: () => getMovie(movieId),
@@ -21,6 +22,7 @@ export const MovieRoute = createRoute({
   },
   errorComponent: ({ error }) => <ErrorMessage message={error!.toString()} />,
   component: lazyRouteComponent(() => import('./lazyMovieComponent')),
+  pendingComponent: LoadingBackdrop,
 });
 
 export default MovieRoute;

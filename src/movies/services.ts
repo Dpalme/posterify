@@ -1,5 +1,5 @@
-import { useTMDB } from '@shared/hooks/useTMDB';
-import { ITMDBMovie } from '@shared/models/movie';
+import { useTMDB } from '#shared/hooks/useTMDB';
+import { ITMDBMovie } from '#shared/models/movie';
 
 export async function getMovie(movieId: number | string): Promise<ITMDBMovie> {
   return useTMDB(

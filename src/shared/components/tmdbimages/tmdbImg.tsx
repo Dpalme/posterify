@@ -79,8 +79,8 @@ export const TMDBImage = (props: {
         aspectRatio: props.aspectRatio,
         backgroundImage: `url('${smallestImage}')`,
       }}
-      width={props.type == 'poster' ? 2000 : 3840}
-      height={props.type == 'poster' ? 3000 : 2160}
+      width={props.type == 'poster' ? 2000 : props.type == 'logo' ? 480 : 3840}
+      height={props.type == 'poster' ? 3000 : props.type == 'logo' ? 480 : 2160}
       onLoad={(ev) => (ev.currentTarget.style.background = 'transparent')}
     />
   );

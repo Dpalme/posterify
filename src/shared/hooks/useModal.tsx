@@ -18,10 +18,7 @@ export const ModalProvider = (props: { children: ReactNode }) => {
       {props.children}
       {!!modal && (
         <div
-          className="fixed z-50 top-0 left-0 dark:bg-black
-            bg-opacity-75 bg-white backdrop-blur-sm backdrop-filter
-            cursor-pointer w-screen h-[calc(100vh-4rem)] overflow-hidden
-            p-8 md:mt-16"
+          className="bg-opacity-75 fixed top-0 left-0 z-50 h-[calc(100vh-4rem)] w-screen cursor-pointer overflow-hidden bg-white p-8 backdrop-blur-sm backdrop-filter md:mt-16 dark:bg-black"
           onClick={resetModal}
         >
           {modal}

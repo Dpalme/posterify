@@ -1,16 +1,39 @@
-import { Container } from '@/shared/components/container';
-import { SearchField } from '@/shared/components/searchField';
-import { Outlet } from '@tanstack/react-router';
+import { getRouteApi } from '@tanstack/react-router';
 
-export function SearchPage() {
-  return (
-    <Container gridClass="!grid-cols-1 relative">
-      <div className="flex flex-col gap-2 fixed top-[80vh] left-1/2 z-10 -translate-x-1/2 transform md:hidden">
-        <SearchField />
-      </div>
-      <Outlet />
-    </Container>
-  );
+import { HandleAsync } from '#/shared/components/handleAsync';
+import { FallbackPosters } from '#/shared/components/fallbackPosters';
+import MovieGrid from '#/shared/components/movieGrid';
+
+import { useSearch } from './hooks';
+
+const Route = getRouteApi('/search');
+
+function setInitialIndex(n: number) {
+  window.localStorage.setItem('lastMovieSearch', String(n));
 }
 
-export default SearchPage;
+export default function SearchResultsPage() {
+  const { query } = Route.useSearch();
+  const { movies, error, loading, fetchNextPage } = useSearch(query);
+  const initialIndex = Number(
+    window.localStorage.getItem('lastMovieSearch') || 0,
+  );
+
+  return (
+    <HandleAsync
+      loading={loading}
+      error={error}
+      fallback={<FallbackPosters numberOfPosters={25} />}
+    >
+      {!!movies && movies.length == 0 && query && (
+        <p className="font-title text-3xl">No results</p>
+      )}
+      <MovieGrid
+        movies={movies}
+        fetchNextPage={fetchNextPage}
+        initialIndex={initialIndex}
+        setInitialIndex={setInitialIndex}
+      />
+    </HandleAsync>
+  );
+}

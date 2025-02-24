@@ -6,8 +6,7 @@ export const ResponsiveBackground = (props: { imagePath: string }) => {
       <TMDBImage
         type="backdrop"
         path={props.imagePath}
-        className="fixed -z-2 h-screen w-screen
-        left-0 object-cover top-0 bg-cover"
+        className="fixed top-0 left-0 -z-2 h-screen w-screen bg-cover object-cover"
         fullSize={true}
       />
     </>

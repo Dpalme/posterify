@@ -1,6 +1,5 @@
-import { defineConfig } from 'windicss/helpers';
-
-export default defineConfig({
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   extract: {
     include: ['./index.html', './src/index.css', './src/**/*.{tsx,css}'],
     exclude: ['node_modules', '.git'],
@@ -83,4 +82,4 @@ export default defineConfig({
       },
     },
   },
-});
+};
