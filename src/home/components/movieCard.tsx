@@ -15,7 +15,7 @@ export function MovieCard({
     <Link
       to={`/movies/$movieId`}
       params={{ movieId: movie.id?.toString?.() }}
-      className="transform-gpu transition-transform duration-300 hover:z-2 hover:!scale-110"
+      className="hover:z-2 transform-gpu transition-transform duration-300 hover:!scale-110"
       key={movie.id}
       onClick={() => {
         !!index && !!setInitialIndex && setInitialIndex(index);
@@ -27,7 +27,7 @@ export function MovieCard({
           path={movie.poster_path}
         />
       </div>
-      <div className="p-2">
+      <div className="p-2 text-slate-300">
         <h2 className="mb-1 truncate text-sm">{movie.title}</h2>
         <p className="text-xs">{movie?.release_date?.slice(0, 4)}</p>
       </div>

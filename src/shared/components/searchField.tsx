@@ -3,7 +3,7 @@ import SearchIcon from '#assets/search.svg';
 import { useNavigate, useSearch } from '@tanstack/react-router';
 
 export const SearchField = () => {
-  const search = useSearch({ strict: false }) || { query: '' };
+  const search = useSearch({ strict: false });
   const queryField = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   return (
@@ -29,7 +29,7 @@ export const SearchField = () => {
             type="text"
             name="query"
             id="queryField"
-            defaultValue={search.query}
+            defaultValue={(search as { query: string }).query ?? ''}
             className="w-full rounded-full border border-gray-300 px-4 pl-10 text-lg leading-8"
             ref={queryField}
             required={true}

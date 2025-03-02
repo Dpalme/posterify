@@ -22,12 +22,11 @@ export const Tutorial = () => {
       <div className="max-w-64">
         <ImageCard
           type="poster"
-          movie_id={772515}
+          movie_id={'772515'}
           file_path="/1mZcxuL4GLUvPdEXC4iZPjG2EO3.jpg"
           aspect_ratio={0.667}
           height={3000}
           width={2000}
-          inCollection={false}
         />
       </div>
     </>

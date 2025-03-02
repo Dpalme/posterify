@@ -13,7 +13,7 @@ export const AddToCollectionButton = (props: {
   inCollection: boolean;
   aspect_ratio: number;
   height: number;
-  loading: boolean;
+  loading?: boolean;
   width: number;
 }) => {
   const [inCollection, setInCollection] = useState(props.inCollection);

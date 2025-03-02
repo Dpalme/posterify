@@ -52,7 +52,7 @@ function MoviePage() {
         <div
           // @ts-ignore
           style={{ '--tw-to-opacity': 0 }}
-          className="bg-opacity-50 opacity flex w-full flex-col items-start justify-end gap-4 overscroll-auto bg-gradient-to-t from-black to-black p-8 pb-28 text-white drop-shadow-lg filter"
+          className="flex w-full flex-col items-start justify-end gap-4 overscroll-auto bg-opacity-50 bg-gradient-to-r from-black via-[#0008] to-transparent p-8 pb-28 text-white drop-shadow-lg filter"
         >
           {movieLogo !== undefined && movieLogo.length > 0 ? (
             <TMDBImage
@@ -60,7 +60,7 @@ function MoviePage() {
               path={movieLogo[0].file_path}
               alt={movie?.title}
               fullSize={true}
-              className="!w-96 w-auto object-contain object-left-bottom drop-shadow-md filter"
+              className="!w-96 object-contain object-left-bottom drop-shadow-md filter"
             />
           ) : (
             <h1 className="font-title text-4xl font-extrabold">
@@ -87,12 +87,12 @@ function MoviePage() {
       <div className="h-[90dvh]"></div>
 
       <div
-        className="!bg-opacity-5 bg-white p-8 backdrop-blur-md backdrop-filter dark:bg-black"
+        className="bg-white !bg-opacity-50 p-8 backdrop-blur-md backdrop-filter dark:bg-black"
         ref={scrollElement}
       >
         <VirtuosoGrid
           customScrollParent={scrollElement.current!}
-          listClassName="grid grid-cols-[repeat(auto-fill,minmax(10rem,1fr))] gap-2"
+          listClassName="grid grid-cols-[repeat(auto-fill,minmax(10rem,1fr))] gap-4"
           data={posters}
           itemContent={(_, img) => (
             <ImageCard
@@ -105,14 +105,14 @@ function MoviePage() {
         />
       </div>
       <div
-        className="!bg-opacity-5 bg-white p-8 backdrop-blur-md backdrop-filter dark:bg-black"
+        className="bg-white !bg-opacity-50 p-8 backdrop-blur-md backdrop-filter dark:bg-black"
         ref={scrollElementBackdrops}
       >
         <VirtuosoGrid
           customScrollParent={scrollElementBackdrops.current!}
           totalCount={backdrops.length}
           className="mt-16"
-          listClassName="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2"
+          listClassName="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
           data={backdrops}
           increaseViewportBy={{ top: window.innerHeight * 0.9, bottom: 0 }}
           itemContent={(_, img) => (

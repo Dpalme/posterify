@@ -16,12 +16,11 @@ export default function MovieGrid({
   return (
     <VirtuosoGrid
       initialTopMostItemIndex={initialIndex}
-      listClassName="mt-24 p-8 grid grid-cols-[repeat(auto-fill,minmax(10rem,1fr))] gap-2"
+      listClassName="mt-24 p-8 grid grid-cols-[repeat(auto-fill,minmax(10rem,1fr))] gap-4"
       data={movies}
       endReached={() => fetchNextPage?.()}
       increaseViewportBy={700}
-      className="hover:scale-75"
-      itemClassName="transform hover:!scale-100"
+      itemClassName="transform scale-100 hover:!scale-110"
       itemContent={(i, movie) => {
         return !!movie ? (
           <MovieCard

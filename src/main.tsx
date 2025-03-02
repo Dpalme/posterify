@@ -2,7 +2,6 @@ import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { LoadingBackdrop } from './shared/components/backdrop';
-import 'virtual:windi.css';
 import './shared/providers/database';
 
 import { createRouter, RouterProvider } from '@tanstack/react-router';

@@ -33,7 +33,6 @@ function CollectionPage() {
                 file_path={entry.file_path}
                 movie_id={entry.movie_id}
                 key={entry.file_path}
-                inCollection={true}
                 aspect_ratio={entry.aspect_ratio}
                 width={entry.width}
                 height={entry.height}
@@ -64,7 +63,6 @@ function CollectionPage() {
                 file_path={entry.file_path}
                 movie_id={entry.movie_id}
                 key={entry.file_path}
-                inCollection={true}
                 aspect_ratio={entry.aspect_ratio}
                 width={entry.width}
                 height={entry.height}
