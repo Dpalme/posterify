@@ -1,1 +1,0 @@
-import{j as e,C as s,S as a,O as r}from"./index-17b2a292.js";function l(){return e.jsxs(s,{gridClass:"!grid-cols-1 relative",children:[e.jsx("div",{className:"flex flex-col gap-2 fixed top-[80vh] left-1/2 z-10 -translate-x-1/2 transform md:hidden",children:e.jsx(a,{})}),e.jsx(r,{})]})}export{l as SearchPage,l as default};
