@@ -73,7 +73,11 @@ export const TMDBImage = (props: {
     <img
       src={originalImage}
       alt={props.alt}
-      className={[props.className, 'w-full'].join(' ')}
+      className={[
+        props.className,
+        props.type == 'poster' ? 'bg-gray-400 dark:bg-gray-700' : '',
+        'w-full',
+      ].join(' ')}
       loading="lazy"
       style={{
         aspectRatio: props.aspectRatio,

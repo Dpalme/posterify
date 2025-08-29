@@ -5,7 +5,6 @@ import { createRoute } from '@tanstack/react-router';
 import rootRoute from '#/App';
 import MovieGrid from '#/shared/components/movieGrid';
 import { LoadingSpinner } from '#/shared/components/loadingSpinner';
-import { useCallback } from 'react';
 
 export const HomeRoute = createRoute({
   path: '/',

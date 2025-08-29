@@ -1,6 +1,6 @@
 import { useRef } from 'react';
-import SearchIcon from '#assets/search.svg';
 import { useNavigate, useSearch } from '@tanstack/react-router';
+import { SearchIcon } from 'lucide-react';
 
 export const SearchField = () => {
   const search = useSearch({ strict: false });
@@ -30,13 +30,13 @@ export const SearchField = () => {
             name="query"
             id="queryField"
             defaultValue={(search as { query: string }).query ?? ''}
-            className="w-full rounded-full border border-gray-300 px-4 pl-10 text-lg leading-8"
+            className="bg-gray-200 w-full rounded-full border border-gray-300 px-4 pl-10 leading-8 placeholder-shown:bg-gray-600 focus:bg-gray-200"
+            placeholder='Search'
             ref={queryField}
             required={true}
           />
-          <img
-            src={SearchIcon}
-            className="dark:(invert filter) pointer-events-none absolute top-1 left-2"
+          <SearchIcon
+            className="text-current pointer-events-none absolute top-1 left-2"
             height={24}
           />
         </div>
