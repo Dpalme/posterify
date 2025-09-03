@@ -4,7 +4,7 @@ import './index.css';
 import { LoadingBackdrop } from './shared/components/backdrop';
 import './shared/providers/database';
 
-import { createRouter, RouterProvider } from '@tanstack/react-router';
+import { createHashHistory, createRouter, RouterProvider } from '@tanstack/react-router';
 import rootRoute from './App';
 import HomeRoute from './home/page';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -21,11 +21,14 @@ const routeTree = rootRoute.addChildren([
 
 const queryClient = new QueryClient();
 
+const hashHistory = createHashHistory()
+
 const router = createRouter({
   routeTree,
   defaultPreload: 'intent',
   defaultPreloadStaleTime: 0,
   context: { queryClient },
+  history: hashHistory
 });
 
 // Register the router instance for type safety
